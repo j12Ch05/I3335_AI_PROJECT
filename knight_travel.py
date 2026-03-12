@@ -2,7 +2,7 @@ import heapq
 from typing import Tuple, List, Set, Optional
 import time
 
-# optional visualization (including animation)
+# including animation
 try:
     import matplotlib.pyplot as plt
     import matplotlib.patches as patches
@@ -13,28 +13,28 @@ except ImportError:
     VISUAL_AVAILABLE = False
 
 class KnightTourAStar:
-    """Knight's Tour solver using Warnsdorff's heuristic with backtracking"""
+    """Knight's Tour solver"""
     
-    # Knight move offsets (L-shaped: 2 squares in one direction, 1 in perpendicular)
+    # Knight move is L-shape 
     MOVES = [
         (2, 1), (2, -1), (-2, 1), (-2, -1),
         (1, 2), (1, -2), (-1, 2), (-1, -2)
     ]
     
     def __init__(self, board_size: int = 8):
-        self.board_size = board_size
+        self.board_size = board_size#this.board_size = board_size
         self.board = [[-1 for _ in range(board_size)] for _ in range(board_size)]
         self.visited_order = []
         self.calls = 0
         
     def is_valid_move(self, x: int, y: int, board: List[List[int]]) -> bool:
-        """Check if a move is valid (within bounds and not visited)"""
+        #Check if the square is never been visited
         return (0 <= x < self.board_size and 
                 0 <= y < self.board_size and 
                 board[y][x] == -1)
     
     def count_onward_moves(self, x: int, y: int, board: List[List[int]]) -> int:
-        """Warnsdorff's heuristic: count number of valid next moves"""
+        #count number of next moves
         count = 0
         for dx, dy in self.MOVES:
             nx, ny = x + dx, y + dy
@@ -44,7 +44,7 @@ class KnightTourAStar:
     
     def solve_recursive(self, x: int, y: int, move_count: int, board: List[List[int]]) -> bool:
         """
-        Recursively solve knight's tour using Warnsdorff's heuristic
+        recursive function knight's tour using Warnsdorff's heuristic
         Returns True if a complete tour is found
         """
         self.calls += 1
@@ -72,7 +72,7 @@ class KnightTourAStar:
             if self.solve_recursive(nx, ny, move_count + 1, board):
                 return True
         
-        # Backtrack: unmark current square
+        # Backtrack: remove the mark from the current square
         board[y][x] = -1
         return False
     
@@ -90,11 +90,13 @@ class KnightTourAStar:
         start_time = time.time()
         
         # Initialize board (-1 means unvisited)
+        #Initializing the list board to mark every square unvisited
+        #it means creating a board
         board = [[-1 for _ in range(self.board_size)] for _ in range(self.board_size)]
         
         # Solve using recursive backtracking
         if self.solve_recursive(start_x, start_y, 0, board):
-            self.board = board
+            self.board = board# this.board = board (in java)
             
             # Extract the path from the board
             path = [(0, 0)] * (self.board_size * self.board_size)

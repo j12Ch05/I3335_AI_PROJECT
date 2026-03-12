@@ -8,5 +8,5 @@ charbel outayek
 ## Projects
 
 * Queens(Done)
-* knight travel (Undone)
+* knight travel (Done)
 

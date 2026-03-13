@@ -1,12 +1,12 @@
 # I3335_AI_PROJECT
 
 Repository for course I3335(AI)
-jean chamoun
-omar hammoud
-charbel outayek
+Jean Chamoun
+Omar Hammoud
+Charbel Outayek
 
 ## Projects
 
-* Queens(Done)
-* knight travel (Done)
-
+* Queens        (Done)
+* Knight Travel (Done)
+* <Jean?>       (Undone)

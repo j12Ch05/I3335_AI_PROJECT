@@ -81,7 +81,7 @@ def print_board(config):
 
 def main():
     global n
-    n = int(input("Enter board size: "))
+    #n = int(input("Enter board size: "))
 
     board = [[0 for a in range(n)] for b in range(n)]   # creates a nxn boadr
     config = [0] * n        # List of n length filled with 0

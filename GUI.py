@@ -1,5 +1,5 @@
 import pygame
-import Queens, KnightTravel
+import Queens, knight_tour
 
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
@@ -25,7 +25,6 @@ r3 = base_r3.copy()
 r1_scale = 1.0
 r2_scale = 1.0
 r3_scale = 1.0
-
 
 def scaled_rect(rect, scale):
     scaled_width = int(rect.width * scale)
@@ -56,6 +55,9 @@ while running:
                 textK = ""
             elif not activeK and textK=="":
                 textK = "Start Position?"
+            elif not activeK and textK.isalpha():
+                errorQ = "Use Integers"
+                textQ = "Start Position?"
                 
             queensGame = r1.collidepoint(event.pos)
             if queensGame:
@@ -65,6 +67,23 @@ while running:
                     Queens.n = int(textQ)
                     Queens.main()
                     running = False
+            
+            knightTour = r3.collidepoint(event.pos)
+            if knightTour:
+                if textK=="Start Position?":
+                    errorQ = "Select the start position"
+                else:
+                    # BE CAREFUL THIS SHIT LITERALLY FROZE MY PC
+                    x, y = map(int, textK.replace(",", " ").split())
+                    if 0 <= x < 8 and 0 <= y < 8:
+                        running = False
+                        solver = knight_tour.KnightTourSolver(8)
+                        success = solver.solve(x, y)
+                        if success:
+                            solver.animate_solution(interval=600)
+                    else:
+                        errorQ = "Use coordinates from 0 to 7"                    
+
                 
         elif event.type == pygame.KEYDOWN:
             if activeQ:

@@ -142,8 +142,10 @@ class KnightTourSolver:
         )
         plt.show()
 
+start_x, start_y = 0, 0
 
 def main():
+    global start_x, start_y
     cboard_size = 8
     try:
         raw = input(f"Enter starting coordinates x,y (0-{cboard_size-1}), default 0,0: ")

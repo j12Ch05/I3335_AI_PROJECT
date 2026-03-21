@@ -1,3 +1,8 @@
+#Developers
+#Charbel Outayek - 61222
+#Omar Hammoud - 61102
+#Jean Chamoun - 60945
+
 import random
 
 import pygame
